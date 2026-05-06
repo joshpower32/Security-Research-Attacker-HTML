@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Security Research Sink</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
+        .log { background: #fff; border: 1px solid #ddd; padding: 15px; word-break: break-all; }
+    </style>
+</head>
+<body>
+    <h1>OAST Capture Point</h1>
+    <p>If the poisoning is successful, the token will appear below:</p>
+    <div class="log" id="result">Waiting for incoming request...</div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        if (params.toString()) {
+            document.getElementById('result').innerText = "Captured: " + window.location.href;
+            console.log("Captured Token Data:", params.toString());
+        }
+    </script>
+</body>
+</html>
